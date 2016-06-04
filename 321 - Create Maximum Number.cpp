@@ -9,9 +9,13 @@ public:
 
     void genDP(const vector<int> &v, vector<int> &dp, int k){
         vector<int> localv = v;
-        for(int i=0, start=0; start<(int)localv.size(); start =i-1){
+        for(int i=0, start=0; localv.size()>0; start =i==0?0:i-1){
             if((int)(localv.size())<=k) dp[(int)(localv.size())] = vec2Num(localv);
-            for(i=start; i+1 < (int)(localv.size()) && localv[i]< localv[i+1]; ++i){};
+            for(i=start; i+1 < (int)(localv.size()) && localv[i]> localv[i+1]; ++i){
+                   
+            };
+            cout << "current i points to " << i << "  ";
+            cout << "num to erase is " << *(localv.begin()+i) << endl;
         	localv.erase(localv.begin()+i);
         }
     }
@@ -45,7 +49,6 @@ public:
         genDP(nums2,dp2,k);
     
         return calcMax(dp1,dp2);
-        
     }
 };
 
@@ -53,7 +56,7 @@ int main()
 {   
 	Solution *s = new Solution();
     // ========= testing helper functions begin
-    
+    /*
     vector<int> v{2,2,3,4,5};
     int num = s->vec2Num(v);
     cout<< "num is: " << num << endl;
@@ -63,7 +66,7 @@ int main()
     cout << "vec is: " << endl;
     for(int &i: v2){
         cout << i << ", ";
-    }
+    }*/
     // ========= testing helper functions end
 
 
