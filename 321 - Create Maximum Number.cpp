@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <math.h>
 using namespace std;
 
 class Solution {
@@ -14,19 +15,31 @@ public:
             for(i=start; i+1 < (int)(localv.size()) && localv[i]> localv[i+1]; ++i){
                    
             };
-            cout << "current i points to " << i << "  ";
-            cout << "num to erase is " << *(localv.begin()+i) << endl;
+            //cout << "current i points to " << i << "  ";
+            //cout << "num to erase is " << *(localv.begin()+i) << endl;
             localv.erase(localv.begin()+i);
         }
     }
-    vector<int> calcMax(vector<int> dp1, vector<int> dp2){
-        return {};
+    vector<int> calcMax(vector<int> dp1, vector<int> dp2, int k){
+        int maxNum = 0;
+        for(int i=0; i<=k; ++i){
+            int a = dp1[i];
+            int b = dp2[k-i];
+            //cout << "a: " << a << "b: " << b ;
+            cout << "num is: "<< a*(int)(pow(10,k-i))+b << " vs " << b*(int)(pow(10,i))+a << endl;
+            maxNum= max(maxNum,
+                        max(a*(int)(pow(10,k-i))+b,b*(int)(pow(10,i))+a)
+            );
+            //cout << maxNum << endl;
+        }
+        
+        return num2Vector(maxNum);
     }
 
     // helper 
     int vec2Num(const vector<int> &v){
         int mult =1, sum=0;
-    	for(int i=v.size()-1; i>=0;--i){
+        for(int i=v.size()-1; i>=0;--i){
     		sum+= v[i]*mult;
     		mult*=10;
     	}
@@ -48,7 +61,7 @@ public:
         genDP(nums1,dp1,k);
         genDP(nums2,dp2,k);
     
-        return calcMax(dp1,dp2);
+        return calcMax(dp1,dp2,k);
     }
 };
 
@@ -71,6 +84,18 @@ int main()
 
 
     // ========= testing genDP
+    /*vector<int> v3{9,1,2,5,8,3};
+    int k =3;
+    vector<int> dp(k+1,0);
+    s->genDP(v3,dp,k);
+    cout << "dp is: " << endl;
+    for(int i: dp){
+        cout << i << ", ";
+    }  
+    */
+    // ========= testing genDP
+
+    // ========= testing calcMax
     vector<int> v3{9,1,2,5,8,3};
     int k =3;
     vector<int> dp(k+1,0);
@@ -79,7 +104,20 @@ int main()
     for(int i: dp){
         cout << i << ", ";
     }  
-
-    // ========= testing genDP
+    vector<int> v4{3,4,6,5};
+    vector<int> dp2(k+1,0);
+    s->genDP(v4,dp2,k);
+    cout << endl;
+    cout << "dp2 is: " << endl;
+    for(int i: dp2){
+        cout << i << ", ";
+    }  
+    vector<int> v5 = s->calcMax(dp,dp2,k);
+    cout << endl;
+    cout << "res vec is: " << endl;
+    for(int i: v5){
+        cout << i << ", ";
+    }     
+    // ========= testing calcMax
     return 1;
 }
