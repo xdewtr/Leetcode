@@ -16,7 +16,7 @@ public:
             };
             cout << "current i points to " << i << "  ";
             cout << "num to erase is " << *(localv.begin()+i) << endl;
-        	localv.erase(localv.begin()+i);
+            localv.erase(localv.begin()+i);
         }
     }
     vector<int> calcMax(vector<int> dp1, vector<int> dp2){
@@ -44,7 +44,7 @@ public:
     }
 
     vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {
-        vector<int> dp1, dp2;
+        vector<int> dp1(k+1,0), dp2(k+1,0);
         genDP(nums1,dp1,k);
         genDP(nums2,dp2,k);
     
@@ -72,10 +72,11 @@ int main()
 
     // ========= testing genDP
     vector<int> v3{9,1,2,5,8,3};
-    vector<int> dp;
-    s->genDP(v3,dp,2);
+    int k =3;
+    vector<int> dp(k+1,0);
+    s->genDP(v3,dp,k);
     cout << "dp is: " << endl;
-    for(int &i: dp){
+    for(int i: dp){
         cout << i << ", ";
     }  
 
