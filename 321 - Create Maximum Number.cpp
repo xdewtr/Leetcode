@@ -97,7 +97,7 @@ int main()
 
     // ========= testing calcMax
     vector<int> v3{9,1,2,5,8,3};
-    int k =3;
+    int k =5;
     vector<int> dp(k+1,0);
     s->genDP(v3,dp,k);
     cout << "dp is: " << endl;
