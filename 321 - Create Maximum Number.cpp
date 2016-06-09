@@ -19,11 +19,18 @@ public:
             vector<int> tmpres;
             int ii=0, jj=0;
             while(ii!=dp1[i].size() && jj!=dp2[j].size()&&tmpres.size()<k){
-                if(dp1[i][ii]>dp2[j][jj]){
-                    tmpres.push_back(dp1[i][ii]); ++ii;
+                int iii=ii,jjj=jj;
+                for( ;dp1[i][iii]==dp2[j][jjj]; iii++,jjj++){    
+                }
+                if(dp1[i][iii]>dp2[j][jjj]){
+                    tmpres.push_back(dp1[i][ii++]);
+                }
+                else if(dp1[i][iii]<dp2[j][jjj]){
+                    tmpres.push_back(dp2[j][jj++]);
                 }
                 else{
-                    tmpres.push_back(dp2[j][jj]); ++jj;
+                    
+
                 }
             }
             if(ii!=dp1[i].size()){
