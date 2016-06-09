@@ -20,18 +20,15 @@ public:
             int ii=0, jj=0;
             while(ii!=dp1[i].size() && jj!=dp2[j].size()&&tmpres.size()<k){
                 int iii=ii,jjj=jj;
-                for( ;dp1[i][iii]==dp2[j][jjj]; iii++,jjj++){    
+                for( ;iii<dp1[i].size()&&jjj<dp2[j].size()&&dp1[i][iii]==dp2[j][jjj]; iii++,jjj++){    
                 }
-                if(dp1[i][iii]>dp2[j][jjj]){
+                if(jjj>=dp2[j].size()||(iii<dp1[i].size()&& dp1[i][iii]>dp2[j][jjj])){
                     tmpres.push_back(dp1[i][ii++]);
                 }
-                else if(dp1[i][iii]<dp2[j][jjj]){
+                else {
                     tmpres.push_back(dp2[j][jj++]);
                 }
-                else{
-                    
-
-                }
+                
             }
             if(ii!=dp1[i].size()){
                 for(int i2= ii;i2<dp1[i].size()&&tmpres.size()<k; ++i2){
