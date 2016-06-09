@@ -6,7 +6,7 @@ public:
         while(i>=0 && i<n.size()){
              
             if(n.size()<=k) dp[n.size()]= n;
-            for(cursor=i; cursor+1 <n.size() &&n[cursor]>n[cursor+1]; ++cursor){}
+            for(cursor=i; cursor+1 <n.size() &&n[cursor]>=n[cursor+1]; ++cursor){}
             n.erase(n.begin()+cursor);
             i=cursor==0?0:cursor-1;
         }
