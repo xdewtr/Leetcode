@@ -33,20 +33,8 @@ public:
     		rh++;
     	}
     	if(lh==rh) return pow(2,lh)-1;
-    	// process remaining by bottom dfs
-    	int add =0; bool stop =0;
-    	dfs(r,stop,lh,1,add);
-    	return pow(2,lh-1)-1+add;
-    }
-    void dfs(TreeNode* p, bool &stop, const int &h, int curh, int &add){
-    	if(stop) return;
-    	if(!(p->left||p->right)){
-    		if(curh!=h) stop =1;
-    		else add++;
-    		return;
-    	}
-    	if(p->left) dfs(p->left,stop,h,curh+1,add);
-    	if(p->right) dfs(p->right,stop,h,curh+1,add);
 
+    	return 1+countNodes(r->left)+countNodes(r->right);
     }
+
 };
