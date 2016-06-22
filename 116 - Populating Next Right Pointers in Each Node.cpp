@@ -10,12 +10,15 @@ class Solution {
 public:
     void connect(TreeLinkNode *r) {
         if(!r) return;
-        dfs(r);
-    }
-    void dfs(TreeLinkNode* p ){
-    	if(!p) return;
-    	if(p->left) p->left->next = p->right;
-    	dfs(p->left);
-    	dfs(p->right);
+        TreeLinkNode *p = r, *leftmost = NULL;
+        while(p->left){
+        	leftmost = p->left;
+        	while(p){
+        		p->left->next = p->right;
+        		p->right->next = p->next ? p->next->left:NULL;
+        		p = p->next;
+        	}
+        	p = leftmost;
+        }
     }
 };
