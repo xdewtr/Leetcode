@@ -24,6 +24,6 @@ public:
     		pre->right = r;
     		pre = helper(r);
     	}
-    	return p;
+    	return pre;
     }
 };
