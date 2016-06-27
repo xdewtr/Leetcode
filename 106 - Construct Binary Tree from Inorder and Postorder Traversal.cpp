@@ -23,7 +23,7 @@ public:
     	if(lo!=0)
     		p->left = helper(po, pi-ro, in ,s, idx-1);
     	if(ro!=0)
-    		p->left = helper(po, pi, in, idx+1, e);
+    		p->right = helper(po, pi, in, idx+1, e);
     	return p;
     }
     int find(vector<int>& v, int val,int s, int e){
